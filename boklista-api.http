@@ -1,0 +1,75 @@
+@boklista_api_HostAddress = http://localhost:5163
+
+GET {{boklista_api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+GET {{boklista_api_HostAddress}}/api/book/
+Accept: application/json
+
+###
+
+POST {{boklista_api_HostAddress}}/api/book/
+Content-Type: application/json
+
+{
+  "title": "The Great Gatsby",
+  "author": "F. Scott Fitzgerald",
+  "publicationYear": 1925,
+  "UserId": 1
+}
+
+###
+
+POST {{boklista_api_HostAddress}}/api/user/register
+Content-Type: application/json
+
+{
+  "Username": "JohnDoe",
+  "Password": "SecurePassword123",
+  "Email": "john.doe@example.com"
+}
+
+###
+//Correct credentials login
+POST {{boklista_api_HostAddress}}/api/user/login
+Content-Type: application/json
+
+{
+  "Username": "JohnDoe",
+  "Password": "SecurePassword123"
+}
+
+###
+//Wrong credentials login
+POST {{boklista_api_HostAddress}}/api/user/login
+Content-Type: application/json
+
+{
+  "Username": "JohnDoe",
+  "Password": "SecurePassword1234"
+}
+
+###
+//Wrong credentials login 2
+POST {{boklista_api_HostAddress}}/api/user/login
+Content-Type: application/json
+
+{
+  "Username": "Johnny",
+  "Password": "SecurePassword1234"
+}
+
+###
+GET {{boklista_api_HostAddress}}/api/book/1
+Accept: application/json
+
+###
+DELETE {{boklista_api_HostAddress}}/api/book/1
+Accept: application/json
+
+###
+//Remove user with id 1
+DELETE {{boklista_api_HostAddress}}/api/user/2
+Accept: application/json
