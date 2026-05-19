@@ -25,7 +25,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: AllowSpecificOrigins,
                       policy =>
                       {
-                          policy.WithOrigins(frontendUrl!)
+                          policy.WithOrigins("http://localhost:4200", "boklista-frontend.vercel.app")
                           .AllowAnyHeader()
                           .AllowAnyMethod();
                       });
