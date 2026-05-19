@@ -9,6 +9,9 @@ using Microsoft.IdentityModel.Tokens;
 var AllowSpecificOrigins = "_allowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5163";
+builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
+
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
@@ -83,9 +86,10 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
     app.MapScalarApiReference();
+    app.UseHttpsRedirection();
 }
 
-app.UseHttpsRedirection();
+
 
 app.UseCors(AllowSpecificOrigins);
 
