@@ -15,7 +15,9 @@ builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-var frontendUrl = builder.Configuration["FrontendUrl"];
+var frontendUrl = Environment.GetEnvironmentVariable("FRONTEND_URL") ?? "http://localhost:4200";
+
+//var frontendUrl = builder.Configuration["FrontendUrl"];
 
 // Add services to the container.
 builder.Services.AddCors(options =>
