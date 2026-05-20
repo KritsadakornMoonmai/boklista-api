@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using boklista_api.Models;
 using boklista_api.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace boklista_api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class BookController(IBookService bookService) : ControllerBase
 {
     [HttpGet]

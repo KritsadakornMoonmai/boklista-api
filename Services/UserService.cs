@@ -128,7 +128,7 @@ namespace boklista_api.Services
         {
             string renewToken = RenewToken();
             user.Token = renewToken;
-            user.TokenExpiration = DateTime.UtcNow.AddDays(1);
+            user.TokenExpiration = DateTime.UtcNow.AddDays(7);
             await context.SaveChangesAsync();
             return renewToken;
         }
@@ -170,7 +170,7 @@ namespace boklista_api.Services
                 issuer: configuration.GetValue<string>("Appsettings:Issuer"),
                 audience: configuration.GetValue<string>("Appsettings:Audience"),
                 claims: claims,
-                expires: DateTime.Now.AddDays(1),
+                expires: DateTime.UtcNow.AddMinutes(15),
                 signingCredentials: creds
             );
             return new JwtSecurityTokenHandler().WriteToken(tokenDescriptor);

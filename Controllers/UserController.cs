@@ -7,6 +7,7 @@ namespace boklista_api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class UserController(IUserService userService) : ControllerBase
 {
     [HttpGet("{id}")]
@@ -38,6 +39,7 @@ public class UserController(IUserService userService) : ControllerBase
     }
 
     [HttpPost("login")]
+    [AllowAnonymous]
     public async Task<ActionResult<AccessTokenDto>> Login(UserDTOLogin userDto)
     {
 
@@ -51,6 +53,7 @@ public class UserController(IUserService userService) : ControllerBase
     }
 
     [HttpPost("register")]
+    [AllowAnonymous]
     public async Task<ActionResult<User>> CreateUser(UserDTOCreate userDto)
     {
         try
@@ -93,7 +96,6 @@ public class UserController(IUserService userService) : ControllerBase
         }
     }
 
-    [Authorize]
     [HttpGet]
     public IActionResult AuthenticationEndpoint()
     {
@@ -101,6 +103,7 @@ public class UserController(IUserService userService) : ControllerBase
     }
 
     [HttpPost("renew-token")]
+    [AllowAnonymous]
     public async Task<ActionResult<AccessTokenDto>> RenewToken(RenewTokenRequestDTO renewTokenRequest)
     {
         var token = await userService.RenewTokenAsync(renewTokenRequest);

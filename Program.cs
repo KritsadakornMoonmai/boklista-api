@@ -31,6 +31,7 @@ builder.Services.AddCors(options =>
                       });
 });
 
+builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
@@ -94,6 +95,8 @@ if (app.Environment.IsDevelopment())
 
 
 app.UseCors(AllowSpecificOrigins);
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
